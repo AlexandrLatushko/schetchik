@@ -1,10 +1,10 @@
 type ButtonPropsType = {
     title:string 
     onClick:()=>void
-    classNane:string
+    className:string
 };
-export const Button = ({title, onClick,classNane}: ButtonPropsType) => {
+export const Button = ({title, onClick,className}: ButtonPropsType) => {
     return (
-        <button className={classNane} onClick={onClick}>{title}</button>
+        <button className={className} onClick={onClick}>{title}</button>
     );
 };

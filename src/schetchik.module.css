@@ -5,6 +5,7 @@
     height: 100vh;
     width: 100vw;
     background-color: #bdfff3; 
+    gap: 30px;
   }
   
   .mainContainer {
@@ -81,3 +82,30 @@
     background-color: #76c7c0;
     transition: width 0.3s ease-in-out;
   }
+
+  .inputRow {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+  }
+  
+  .inputLabel {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  .inputField {
+    padding: 5px;
+    font-size: 16px;
+    border: 2px solid #70FFF6;
+    border-radius: 5px;  
+  }
+
+.inputError {
+  background-color: #ffcccc;
+  border-color: red;
+}

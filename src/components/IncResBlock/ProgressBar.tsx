@@ -1,4 +1,4 @@
-import s from "./../schetchik.module.css"
+import s from "./../../schetchik.module.css"
 
 type ProgressBarPropsType = {
     progress:number 
