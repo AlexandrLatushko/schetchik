@@ -44,7 +44,6 @@ export const SetBlock = ({ onSetValues, setGlobalError,startValue, setStartValue
 
     const handleSetClick = () => {
         onSetValues(maxValueInput, startValueInput);
-        setStartValue(startValue)
     };
 
     const setButtonStyle = error ? s.buttonInActiveStyle : s.buttonStyle

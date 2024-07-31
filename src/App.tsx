@@ -11,12 +11,16 @@ function App() {
   const [startValue, setStartValue] = useState(0);
 
   const [globalError, setGlobalError] = useState(false)
+  
+  const startValueLocal = localStorage.getItem('startValue')
+
+  useEffect(() => {startValueLocal &&  setStartValue(+startValueLocal)
+  }, [startValueLocal])
 
   useEffect(() => {
     // Получение сохраненных значений из localStorage
     const savedMaxValue = localStorage.getItem('maxValue');
     const savedStartValue = localStorage.getItem('startValue');
-
     // Если сохраненные значения существуют, парсим их и устанавливаем состояния
     if (savedMaxValue && savedStartValue) {
       setMaxValue(JSON.parse(savedMaxValue));
@@ -27,7 +31,6 @@ function App() {
   const handleSetValues = (max:number, start:number) => {
     setMaxValue(max);
     setStartValue(start);
-
     localStorage.setItem('maxValue', JSON.stringify(max));
     localStorage.setItem('startValue', JSON.stringify(start));
   };

@@ -19,8 +19,11 @@ export const IncResBlock = ({maxValue, startValue, globalError}: Props) => {
     });
 
   // Сохранение значения в localStorage при его изменении
-    useEffect(() => {localStorage.setItem('counterElement', counterElement.toString());
+    useEffect(() => {localStorage.setItem('counterElement', counterElement?.toString());
     }, [counterElement]);
+
+    useEffect(()=>{setCounterElement(startValue)
+    },[startValue])
 
     const styleTablo = counterElement === maxValue ? s.maxcCounterStyle : s.counterStyle
     const buttonInsStyle = counterElement === maxValue ? s.buttonInActiveStyle : s.buttonStyle
@@ -31,6 +34,7 @@ export const IncResBlock = ({maxValue, startValue, globalError}: Props) => {
     const counter = () => {
         if(counterElement < maxValue){
             setCounterElement(counterElement + 1)
+            
         }
     }
     
