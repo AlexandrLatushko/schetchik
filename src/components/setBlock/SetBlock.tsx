@@ -7,10 +7,9 @@ type Props = {
     onSetValues: (max: number, start: number) => void
     setGlobalError: (value: boolean) => void
     startValue: number
-    setStartValue: (startValue : number) => void
 };
 
-export const SetBlock = ({ onSetValues, setGlobalError,startValue, setStartValue}: Props) => {
+export const SetBlock = ({ onSetValues, setGlobalError,startValue, }: Props) => {
     
     const [maxValueInput, setMaxValueInput] = useState(startValue);
     
@@ -24,7 +23,6 @@ export const SetBlock = ({ onSetValues, setGlobalError,startValue, setStartValue
     useEffect(() => {
         const savedMaxValue = localStorage.getItem('maxValue');
         const savedStartValue = localStorage.getItem('startValue');
-
         // Если сохраненные значения существуют, парсим их и устанавливаем состояния input'ов
         if (savedMaxValue && savedStartValue) {
             setMaxValueInput(JSON.parse(savedMaxValue));

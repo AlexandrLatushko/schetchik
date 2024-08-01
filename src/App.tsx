@@ -8,20 +8,21 @@ function App() {
   
   const [maxValue, setMaxValue] = useState(Infinity);
 
-  const [startValue, setStartValue] = useState(0);
+  const [startValue, setStartValue] = useState(Infinity);
 
-  const [globalError, setGlobalError] = useState(false)
+  const [globalError, setGlobalError] = useState(false);
   
-  const startValueLocal = localStorage.getItem('startValue')
+  const startValueLocal = localStorage.getItem('startValue');
 
-  useEffect(() => {startValueLocal &&  setStartValue(+startValueLocal)
+  useEffect(() => {
+    startValueLocal &&  setStartValue(+startValueLocal)
   }, [startValueLocal])
 
   useEffect(() => {
-    // Получение сохраненных значений из localStorage
+    //    Получение сохраненных значений из localStorage
     const savedMaxValue = localStorage.getItem('maxValue');
     const savedStartValue = localStorage.getItem('startValue');
-    // Если сохраненные значения существуют, парсим их и устанавливаем состояния
+    //       Если сохраненные значения существуют, парсим их и устанавливаем состояния
     if (savedMaxValue && savedStartValue) {
       setMaxValue(JSON.parse(savedMaxValue));
       setStartValue(JSON.parse(savedStartValue));
@@ -35,11 +36,10 @@ function App() {
     localStorage.setItem('startValue', JSON.stringify(start));
   };
   
-
   return (
     <div className={s.appContainer}>
       <IncResBlock maxValue={maxValue} startValue={startValue} globalError={globalError}  />
-      <SetBlock onSetValues={handleSetValues} setGlobalError={setGlobalError} startValue={startValue} setStartValue={setStartValue} />
+      <SetBlock onSetValues={handleSetValues} setGlobalError={setGlobalError} startValue={startValue}  />
     </div>
   );
 }
