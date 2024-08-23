@@ -29,7 +29,7 @@ function App() {
     }
   }, []);
 
-  const handleSetValues = (max:number, start:number) => {
+  const SetValuesHandler = (max:number, start:number) => {
     setMaxValue(max);
     setStartValue(start);
     localStorage.setItem('maxValue', JSON.stringify(max));
@@ -39,7 +39,7 @@ function App() {
   return (
     <div className={s.appContainer}>
       <IncResBlock maxValue={maxValue} startValue={startValue} globalError={globalError}  />
-      <SetBlock onSetValues={handleSetValues} setGlobalError={setGlobalError} startValue={startValue}  />
+      <SetBlock onSetValues={SetValuesHandler} setGlobalError={setGlobalError} startValue={startValue}  />
     </div>
   );
 }

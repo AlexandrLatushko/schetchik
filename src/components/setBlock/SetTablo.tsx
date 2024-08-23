@@ -13,6 +13,7 @@ export const SetTablo = ({className, maxValue, startValue, onMaxValueChange, onS
     
     const startInputStyle = startValueError ? s.inputError: s.inputField
     const maxInputStyle =  startValueError ? s.inputError: s.inputField
+    
     return (
         <div className={className}>
             <div className={s.inputRow}>
@@ -26,3 +27,6 @@ export const SetTablo = ({className, maxValue, startValue, onMaxValueChange, onS
     </div>
     );
 };
+
+
+

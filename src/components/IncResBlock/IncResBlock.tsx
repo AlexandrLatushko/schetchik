@@ -11,11 +11,12 @@ type Props = {
 };
 
 export const IncResBlock = ({ maxValue, startValue, globalError }: Props) => {
-  // Инициализация состояния counterElement из localStorage или с начального значения
+
+    // Инициализация состояния counterElement из localStorage или с начального значения
     const [counterElement, setCounterElement] = useState(() => {
-    const savedCounter = localStorage.getItem("counterElement");
-    return savedCounter ? Number(savedCounter) : startValue;
-});
+        const savedCounterLocalStorage = localStorage.getItem("counterElement");
+        return savedCounterLocalStorage ? Number(savedCounterLocalStorage) : startValue;
+    });
 
   // Сохранение значения counterElement в localStorage при его изменении
     useEffect(() => {
@@ -24,9 +25,15 @@ export const IncResBlock = ({ maxValue, startValue, globalError }: Props) => {
 
   // Сброс counterElement на startValue при изменении startValue
     useEffect(() => {
-        setCounterElement(startValue);
-    }, [startValue]);
+        setCounterElement(counterElement);
+    }, [counterElement]);
 
+    useEffect(() => {
+        const savedCounterLocalStorage = localStorage.getItem("counterElement");
+
+        if(savedCounterLocalStorage && (startValue !== +savedCounterLocalStorage)){
+            console.log("123")
+            setCounterElement(startValue);}}, [startValue]);
   // Определение стилей для табло и кнопок в зависимости от состояния
     const styleTablo =
         counterElement === maxValue ? s.maxcCounterStyle : s.counterStyle;

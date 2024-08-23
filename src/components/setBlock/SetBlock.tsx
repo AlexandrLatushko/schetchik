@@ -17,6 +17,8 @@ export const SetBlock = ({ onSetValues, setGlobalError,startValue, }: Props) => 
 
     const error = startValueInput >= maxValueInput || startValueInput < 0
     
+    const setButtonStyle = error ? s.buttonInActiveStyle : s.buttonStyle
+
     useEffect(()=>{setGlobalError(error)},[error, setGlobalError])
 
     // useEffect для загрузки сохраненных значений из localStorage при инициализации компонента
@@ -30,21 +32,17 @@ export const SetBlock = ({ onSetValues, setGlobalError,startValue, }: Props) => 
         }
     } , []);
 
-    const handleMaxValueChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const valueMax = Number(e.currentTarget.value)
-        setMaxValueInput(valueMax);
+    const MaxValueChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setMaxValueInput(Number(e.currentTarget.value))
     };
 
-    const handleStartValueChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const valueStart = Number(e.currentTarget.value);
-        setStartValueInput(valueStart);
+    const StartValueChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setStartValueInput(Number(e.currentTarget.value));
     };
 
-    const handleSetClick = () => {
+    const SetClickHandler = () => {
         onSetValues(maxValueInput, startValueInput);
     };
-
-    const setButtonStyle = error ? s.buttonInActiveStyle : s.buttonStyle
 
     return (
         <div>
@@ -53,12 +51,12 @@ export const SetBlock = ({ onSetValues, setGlobalError,startValue, }: Props) => 
                     className={s.setTabloContainer}
                     maxValue={maxValueInput}
                     startValue={startValueInput}
-                    onMaxValueChange={handleMaxValueChange}
-                    onStartValueChange={handleStartValueChange}
+                    onMaxValueChange={MaxValueChangeHandler}
+                    onStartValueChange={StartValueChangeHandler}
                     startValueError={error}
                 />
                 <div className={s.buttonBlock}>
-                    <Button title={'set'} onClick={handleSetClick} disabled={error} className={setButtonStyle} />
+                    <Button title={'set'} onClick={SetClickHandler} disabled={error} className={setButtonStyle} />
                 </div>
             </div>
         </div>

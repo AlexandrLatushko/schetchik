@@ -80,7 +80,7 @@
   /* Прогресс-бар */
   .progressBar {
     height: 100%;
-    background-color: #76c7c0;
+    background-color: #3e817c;
     transition: width 0.3s ease-in-out;
   }
 
