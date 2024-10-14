@@ -1,48 +1,45 @@
-import { useEffect, useState } from 'react';
-import './App.css';
+// src/App.tsx
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { IncResBlock } from './components/IncResBlock/IncResBlock';
-import s from './schetchik.module.css';
 import { SetBlock } from './components/setBlock/SetBlock';
+import s from './schetchik.module.css';
+import { setMaxValueAC, setStartValueAC } from './actions/counterActions';
+import { RootState } from './store';
 
 function App() {
-  
-  const [maxValue, setMaxValue] = useState(Infinity);
+  const dispatch = useDispatch();
 
-  const [startValue, setStartValue] = useState(Infinity);
 
-  const [globalError, setGlobalError] = useState(false);
-  
-  const startValueLocal = localStorage.getItem('startValue');
+  const counterElement = useSelector((state: RootState) => state.counterElement);
 
-  useEffect(() => {
-    startValueLocal &&  setStartValue(+startValueLocal)
-  }, [startValueLocal])
+  //   useEffect(() => {
+  //   localStorage.setItem("counterElement", counterElement.toString());
+  // }, [counterElement]);
+
 
   useEffect(() => {
-    //    Получение сохраненных значений из localStorage
     const savedMaxValue = localStorage.getItem('maxValue');
     const savedStartValue = localStorage.getItem('startValue');
-    //       Если сохраненные значения существуют, парсим их и устанавливаем состояния
     if (savedMaxValue && savedStartValue) {
-      setMaxValue(JSON.parse(savedMaxValue));
-      setStartValue(JSON.parse(savedStartValue));
+      dispatch(setMaxValueAC(JSON.parse(savedMaxValue)));
+      dispatch(setStartValueAC(JSON.parse(savedStartValue)));
     }
-  }, []);
+  }, [dispatch]);
 
-  const SetValuesHandler = (max:number, start:number) => {
-    setMaxValue(max);
-    setStartValue(start);
+  const SetValuesHandler = (max: number, start: number) => {
+    dispatch(setMaxValueAC(max));
+    dispatch(setStartValueAC(start));
     localStorage.setItem('maxValue', JSON.stringify(max));
     localStorage.setItem('startValue', JSON.stringify(start));
   };
-  
+
   return (
     <div className={s.appContainer}>
-      <IncResBlock maxValue={maxValue} startValue={startValue} globalError={globalError}  />
-      <SetBlock onSetValues={SetValuesHandler} setGlobalError={setGlobalError} startValue={startValue}  />
+      <IncResBlock />
+      <SetBlock onSetValues={SetValuesHandler} />
     </div>
   );
 }
 
 export default App;
-
